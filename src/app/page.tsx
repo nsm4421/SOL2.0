@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Move, MoveRight } from "lucide-react";
+import { MoveRight } from "lucide-react";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -8,13 +8,16 @@ export default function HomePage() {
       <div className="mx-auto my-auto">
         <main>
           <h1 className="mb-5 font-bold text-xl">SOL2.0 디지안 시안</h1>
-
-          <Link href={"/display-products"}>
-            <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600">
-              <span>Display Products Page</span>
-              <MoveRight />
-            </Button>
-          </Link>
+          <ul className="flex flex-col gap-y-1">
+            <li>
+              <Link href={"/repr-product/display"}>
+                <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600 gap-x-3">
+                  <label>상품 조회 페이지</label>
+                  <MoveRight />
+                </Button>
+              </Link>
+            </li>
+          </ul>
         </main>
       </div>
     </div>

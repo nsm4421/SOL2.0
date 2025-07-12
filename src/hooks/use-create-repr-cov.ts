@@ -1,4 +1,5 @@
 import {
+  BenefitUnit,
   CoverageCategory,
   DetailedCoverage,
   ReprCoverage,
@@ -7,15 +8,21 @@ import { create } from "zustand";
 
 type ReprCovState = {
   repr: ReprCoverage;
+  getDetCov: (detCovIndex: number) => DetailedCoverage;
+  getBenefitUnit: (detCovIndex: number, benefitIndex: number) => BenefitUnit;
   setName: (name: string) => void;
   setCategory: (category: CoverageCategory) => void;
   addDetail: (detail: DetailedCoverage) => void;
-  updateDetail: (index: number, detail: Partial<DetailedCoverage>) => void;
-  removeDetail: (index: number) => void;
-  reset: () => void;
+  updateDetail: (
+    detCovIndex: number,
+    detail: Partial<DetailedCoverage>
+  ) => void;
+  removeDetail: (detCovIndex: number) => void;
+  addBenefit: (detCovIndex: number, benefit: BenefitUnit) => void;
+  remveBenefit: (detCovIndex: number, benefitIndex: number) => void;
 };
 
-export const useCreateReprCov = create<ReprCovState>((set) => ({
+export const useCreateReprCov = create<ReprCovState>((set, get) => ({
   repr: {
     name: "",
     category: undefined,
@@ -24,10 +31,15 @@ export const useCreateReprCov = create<ReprCovState>((set) => ({
         code: "",
         name: "",
         category: undefined,
-        benefitUnit: {},
+        benefits: [{}],
       },
     ],
   },
+
+  getDetCov: (detCovIndex: number) => get().repr.children[detCovIndex],
+
+  getBenefitUnit: (detCovIndex: number, benefitIndex: number) =>
+    get().getDetCov(detCovIndex).benefits[benefitIndex],
 
   setName: (name) =>
     set((state) => ({
@@ -53,12 +65,12 @@ export const useCreateReprCov = create<ReprCovState>((set) => ({
       },
     })),
 
-  updateDetail: (index, updatedDetail) =>
+  updateDetail: (detCovIndex, updatedDetail) =>
     set((state) => ({
       repr: {
         ...state.repr,
         children: state.repr.children.map((d, i) =>
-          i === index ? { ...d, ...updatedDetail } : d
+          i === detCovIndex ? { ...d, ...updatedDetail } : d
         ),
       },
     })),
@@ -71,12 +83,32 @@ export const useCreateReprCov = create<ReprCovState>((set) => ({
       },
     })),
 
-  reset: () =>
-    set(() => ({
+  addBenefit: (detCovIndex) =>
+    set((state) => ({
       repr: {
-        name: "",
-        category: undefined,
-        children: [],
+        ...state.repr,
+        children: state.repr.children.map((detCov, idx) =>
+          idx === detCovIndex
+            ? { ...detCov, benefits: [...detCov.benefits, {}] }
+            : detCov
+        ),
+      },
+    })),
+
+  remveBenefit: (detCovIndex, benefitIndex) =>
+    set((state) => ({
+      repr: {
+        ...state.repr,
+        children: state.repr.children.map((detCov, idx) =>
+          detCovIndex === idx
+            ? {
+                ...detCov,
+                benefits: [...detCov.benefits].filter(
+                  (_, idx) => idx !== benefitIndex
+                ),
+              }
+            : detCov
+        ),
       },
     })),
 }));

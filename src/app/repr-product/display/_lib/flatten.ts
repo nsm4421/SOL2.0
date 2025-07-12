@@ -1,19 +1,10 @@
-import { IntegreatedProduct } from "@/models/repr-product"
+import { IntegreatedProduct } from "@/models/repr-product";
+import ProductRow from "./product-row";
 
-export type ProductRow = {
-  integratedCode: string
-  integratedName: string
-  reprCode: string
-  reprName: string
-  unitCode: string
-  unitName: string
-  revisionDate: string
-  showIntegrated: boolean
-  showRepr: boolean
-}
-
-export function flattenProductData(data: IntegreatedProduct[]): ProductRow[] {
-  const rows: ProductRow[] = []
+export default function flattenProductData(
+  data: IntegreatedProduct[]
+): ProductRow[] {
+  const rows: ProductRow[] = [];
 
   for (const integrated of data) {
     for (const repr of integrated.children) {
@@ -28,19 +19,19 @@ export function flattenProductData(data: IntegreatedProduct[]): ProductRow[] {
           revisionDate: unit.revisionDate,
           showIntegrated: true,
           showRepr: true,
-        })
+        });
       }
     }
   }
 
-  let lastIntegrated = ''
-  let lastRepr = ''
+  let lastIntegrated = "";
+  let lastRepr = "";
 
   return rows.map((row) => {
-    const showIntegrated = row.integratedCode !== lastIntegrated
-    const showRepr = row.reprCode !== lastRepr
-    lastIntegrated = row.integratedCode
-    lastRepr = row.reprCode
-    return { ...row, showIntegrated, showRepr }
-  })
+    const showIntegrated = row.integratedCode !== lastIntegrated;
+    const showRepr = row.reprCode !== lastRepr;
+    lastIntegrated = row.integratedCode;
+    lastRepr = row.reprCode;
+    return { ...row, showIntegrated, showRepr };
+  });
 }

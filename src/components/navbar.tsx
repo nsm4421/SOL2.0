@@ -3,9 +3,13 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Menu, Save, User } from "lucide-react";
+import { Menu, User } from "lucide-react";
 
-export default function Navbar() {
+interface Props {
+  label: string;
+}
+
+export default function AppNavbar({ label }: Props) {
   return (
     <nav className="p-2 bg-slate-600 flex justify-between text-white">
       <div className="px-2 flex items-center gap-x-3">
@@ -21,19 +25,9 @@ export default function Navbar() {
             </TooltipContent>
           </Tooltip>
         </i>
-        <h1 className="text-xl font-bold">대표담보 모델링 페이지</h1>
+        <h1 className="text-xl font-bold">{label}</h1>
       </div>
-      <div className="flex gap-x-5">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <i className="cursor-pointer">
-              <Save />
-            </i>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{"저장하기"}</p>
-          </TooltipContent>
-        </Tooltip>
+      <div>
         <Tooltip>
           <TooltipTrigger asChild>
             <i className="cursor-pointer">

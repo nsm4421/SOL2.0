@@ -1,15 +1,9 @@
-import Navbar from "./_components/nav";
-import { PlusCircle } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import SelectCategory from "./_components/select-category";
 import CovName from "./_components/cov-name";
 import DetailedCoverages from "./_components/detailed-coverages";
+import Navbar from "./_components/navbar";
 
-export default function CoverageFormPage() {
+export default function CreateReprCoveragePage() {
   return (
     <>
       <Navbar />
@@ -34,21 +28,6 @@ export default function CoverageFormPage() {
 
         {/* 담보 모델링 */}
         <section className="flex flex-col gap-y-4">
-          <div className="flex justify-start gap-x-5 items-center">
-            <label className="block mb-1 text-sm font-medium">
-              담보 모델링
-            </label>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <i className="cursor-pointer">
-                  <PlusCircle className="size-5" />
-                </i>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{"세부보장 추가"}</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
           <DetailedCoverages />
         </section>
       </main>

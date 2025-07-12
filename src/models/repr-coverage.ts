@@ -10,14 +10,13 @@ export type ReprCoverage = {
 
 /// 세부보장
 export type DetailedCoverage = {
-  code?: string;
-  name: string;
+  name?: string;
   category?: CoverageCategory;
-  benefitUnit: BenefitUnit;
+  benefits: BenefitUnit[];
 };
 
 /// 급부
 export type BenefitUnit = {
-  code?: string;
   name?: string;
+  qBenefit? : string;
 };

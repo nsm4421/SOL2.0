@@ -92,7 +92,7 @@ export default function DetailedCoverageItem({ detCovIndex }: Props) {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="start">
-                      <DropdownMenuLabel>급부특성</DropdownMenuLabel>
+                      <DropdownMenuLabel><span className="text-slate-500">급부특성</span></DropdownMenuLabel>
                       <DropdownMenuItem>
                         <label>급부유형</label>
                       </DropdownMenuItem>

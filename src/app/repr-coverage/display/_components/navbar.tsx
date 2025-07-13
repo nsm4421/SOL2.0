@@ -3,7 +3,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Menu, User } from "lucide-react";
+import { Menu, SquarePlus, User } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   return (
@@ -15,15 +16,28 @@ export default function Navbar() {
               <i className="cursor-pointer">
                 <Menu />
               </i>
-            </TooltipTrigger>
+            </TooltipTrigger> 
             <TooltipContent>
               <p>{"사이드바 열기"}</p>
             </TooltipContent>
           </Tooltip>
         </i>
-        <h1 className="text-xl font-bold">상품조회 페이지</h1>
+        <h1 className="text-xl font-bold">대표담보 조회</h1>
       </div>
-      <div>
+      <div className="flex items-center gap-x-3">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Link href={"/repr-coverage/create"}>
+              <i className="cursor-pointer">
+                <SquarePlus />
+              </i>
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{"대표담보 생성"}</p>
+          </TooltipContent>
+        </Tooltip>
+
         <Tooltip>
           <TooltipTrigger asChild>
             <i className="cursor-pointer">

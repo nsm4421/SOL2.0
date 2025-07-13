@@ -25,10 +25,18 @@ export default function HomePage() {
                 </Button>
               </Link>
             </li>
-              <li>
+            <li>
               <Link href={"/repr-coverage/display"}>
                 <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600 gap-x-3">
                   <label>대표담보 조회 페이지</label>
+                  <MoveRight />
+                </Button>
+              </Link>
+            </li>
+            <li>
+              <Link href={"/repr-coverage/term/edit"}>
+                <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600 gap-x-3">
+                  <label>대표담보 약관 작성 페이지</label>
                   <MoveRight />
                 </Button>
               </Link>

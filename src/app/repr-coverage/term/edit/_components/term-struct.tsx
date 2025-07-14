@@ -16,7 +16,7 @@ export default function TermStruct() {
   return (
     <>
       <div className="flex gap-x-5 items-center">
-        <h2 className="font-bold">Struct</h2>
+        <h2 className="font-bold">조항</h2>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" className="cursor-pointer">

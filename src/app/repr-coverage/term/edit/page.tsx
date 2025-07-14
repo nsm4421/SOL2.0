@@ -1,8 +1,9 @@
 import TermEditor from "./_components/term-editor";
-import ConditionPannel from "./_components/condition-pannel";
+import Condition from "./_components/condition";
 import TermStruct from "./_components/term-struct";
 import Navbar from "./_components/navbar";
 import TermEditorHeader from "./_components/term-editor-header";
+import Preview from "./_components/preview";
 
 export default function EditReprCoverageTerm() {
   return (
@@ -14,13 +15,13 @@ export default function EditReprCoverageTerm() {
             <TermStruct />
           </div>
           <div className="flex-1 p-4">
-            <ConditionPannel />
+            <Condition />
           </div>
         </section>
         <section className="p-4 overflow-y-auto">
           <TermEditorHeader />
           <div className="overflow-y-auto h-full">
-            <TermEditor />
+            <TermEditor />      
           </div>
         </section>
       </main>

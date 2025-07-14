@@ -18,6 +18,14 @@ export default function HomePage() {
               </Link>
             </li>
             <li>
+              <Link href={"/repr-product/display-with-accordian"}>
+                <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600 gap-x-3">
+                  <label>상품 조회 페이지2</label>
+                  <MoveRight />
+                </Button>
+              </Link>
+            </li>
+            <li>
               <Link href={"/repr-coverage/create"}>
                 <Button className="flex justify-between items-center p-2 cursor-pointer hover:text-sky-600 gap-x-3">
                   <label>대표담보 생성 페이지</label>

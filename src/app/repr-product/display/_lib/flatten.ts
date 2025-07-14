@@ -1,37 +1,26 @@
-import { IntegreatedProduct } from "@/models/repr-product";
-import ProductRow from "./product-row";
+import { DisplayProductRow, FetchProductsResponse } from "@/types/repr-product";
 
 export default function flattenProductData(
-  data: IntegreatedProduct[]
-): ProductRow[] {
-  const rows: ProductRow[] = [];
+  data: FetchProductsResponse
+): DisplayProductRow[] {
+  const response: DisplayProductRow[] = [];
 
-  for (const integrated of data) {
-    for (const repr of integrated.children) {
-      for (const unit of repr.children) {
-        rows.push({
-          integratedCode: integrated.code,
-          integratedName: integrated.name,
-          reprCode: repr.code,
-          reprName: repr.name,
-          unitCode: unit.code,
-          unitName: unit.name,
-          revisionDate: unit.revisionDate,
-          showIntegrated: true,
-          showRepr: true,
-        });
+  for (const el of data) {
+    let integratedProductVisibile = true;
+    for (const unitHist of el.unitHistProducts) {
+      response.push({
+        integratedProductCode: el.integratedProduct.code,
+        integratedProductName: el.integratedProduct.name,
+        integratedProductRevisionDate: el.integratedProduct.revisionDate,
+        integratedProductVisibile,
+        unitHistProductCode: unitHist.code,
+        unitHistProductName: unitHist.name,
+        unitHistProductRevisionDate: unitHist.revisionDate,
+      });
+      if (integratedProductVisibile) {
+        integratedProductVisibile = false;
       }
     }
   }
-
-  let lastIntegrated = "";
-  let lastRepr = "";
-
-  return rows.map((row) => {
-    const showIntegrated = row.integratedCode !== lastIntegrated;
-    const showRepr = row.reprCode !== lastRepr;
-    lastIntegrated = row.integratedCode;
-    lastRepr = row.reprCode;
-    return { ...row, showIntegrated, showRepr };
-  });
+  return response;
 }

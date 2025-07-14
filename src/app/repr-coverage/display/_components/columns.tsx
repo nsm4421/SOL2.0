@@ -9,21 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  ArrowDown,
   Book,
   CaseUpper,
-  CheckCircle,
-  ChevronDown,
-  Circle,
-  Delete,
-  DropletIcon,
   EditIcon,
-  FileDownIcon,
   LayoutPanelTop,
-  Notebook,
   PencilLine,
   Search,
-  Workflow,
   X,
 } from "lucide-react";
 import ReprCovRow from "../_lib/repr-cov-row";

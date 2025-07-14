@@ -1,6 +1,5 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
 import {
   useReactTable,
   getCoreRowModel,

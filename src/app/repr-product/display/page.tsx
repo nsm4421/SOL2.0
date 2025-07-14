@@ -1,9 +1,8 @@
-import { columns } from "./_components/columns";
-import { DataTable } from "./_components/data-table";
-import { IntegreatedProduct } from "@/models/repr-product";
 import Header from "./_components/header";
 import AppNavbar from "@/components/navbar";
 import flattenProductData from "./_lib/flatten";
+import { DisplayProductRow } from "@/types/repr-product";
+import { Table } from "./_components/table";
 
 export default async function DisplayReprProductPage() {
   const res = await fetch(
@@ -12,17 +11,16 @@ export default async function DisplayReprProductPage() {
       cache: "no-store",
     }
   );
-  const data: IntegreatedProduct[] = await res.json();
-  const flattened = flattenProductData(data);
+  const data: DisplayProductRow[] = await res.json().then(flattenProductData);
 
   return (
     <>
-     <AppNavbar label={"상품조회"} />
+      <AppNavbar label={"상품조회"} />
       <main className="p-3">
         <div className="mb-5 p-2">
           <Header />
         </div>
-        <DataTable columns={columns} data={flattened} />
+        <Table data={data} />
       </main>
     </>
   );

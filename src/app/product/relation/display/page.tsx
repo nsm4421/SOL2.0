@@ -1,8 +1,9 @@
+import AppNavbar from "@/components/navbar";
 import { FetchProductsResponse } from "@/types/repr-product";
-import ProductsTable from "./_components/table";
 
-export default async function DisplayReprProductPage() {
-  const res = await fetch(
+export default async function DisplayProductRelationPage() {
+
+ const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/repr-product/display`,
     {
       cache: "no-store",
@@ -12,11 +13,11 @@ export default async function DisplayReprProductPage() {
 
   return (
     <>
-      <nav>대표상품 조회안 2안</nav>
+      <AppNavbar label={"상품관계 조회"} />
+        <main className="h-full">
 
-      <main className="p-3">
-        <ProductsTable data={data}/>
-      </main>
+        </main>
+
     </>
   );
 }

@@ -7,7 +7,7 @@ import Navbar from "./_components/navbar";
 
 export default async function DisplayReprCovefagePage() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/repr-coverage/display`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/coverage/repr-coverage/display`,
     {
       cache: "no-store",
     }

@@ -22,3 +22,28 @@ export type DisplayProductRow = {
   unitHistProductName: string;
   unitHistProductRevisionDate: string;
 };
+
+export type FetchProductRelationResponse = {
+  // 주계약
+  mainCtrProudct: {
+    code: string;
+    name: string;
+    revisionDate: string;
+  };
+  // 독립특약
+  indpCtrProducts: {
+    code: string;
+    name: string;
+    revisionDate: string;
+  }[];
+}[];
+
+export type DisplayProductRelationRow = {
+  mainProductCode: string;
+  mainProductName: string;
+  mainProductRevisionDate: string;
+  mainProductVisibile: boolean;
+  indpProductCode: string;
+  indpProductName: string;
+  indpProductRevisionDate: string;
+};

@@ -60,6 +60,15 @@ function LeftDrawer() {
                   상품 목록
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/product/relation/display"
+                  className="text-sm hover:underline"
+                >
+                  주-특 관계조회
+                </Link>
+              </li>
             </ul>
           </div>
 

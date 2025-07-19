@@ -6,7 +6,7 @@ import { Table } from "./_components/table";
 
 export default async function DisplayReprProductPage() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/repr-product/display`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product/repr-product/display`,
     {
       cache: "no-store",
     }

@@ -6,17 +6,14 @@ import {
   ListItemPlugin,
   ListPlugin,
   NumberedListPlugin,
-  TaskListPlugin,
 } from "@platejs/list-classic/react";
-import {
-  BulletedListElement,
-  NumberedListElement,
-  TaskListElement,
-} from "@/components/ui/list-classic-node";
+import { BulletedListElement } from "@/components/ui/list-classic-node";
 import { BasicMarksKit } from "@/components/editor/plugins/basic-marks-kit";
 import EditingArea from "./_components/editing-area";
 import AppNavbar from "@/components/navbar";
 import PreviewArea from "./_components/preview-area";
+import CustomOrderedList from "@/components/editor/custom/custom-ordered-list";
+import CustomListItem from "@/components/editor/custom/custom-list-item";
 
 export default function TermEditorPage() {
   const initialValue = [{ id: "p-1", type: "p", children: [{ text: "" }] }];
@@ -37,14 +34,10 @@ export default function TermEditorPage() {
         shortcuts: { toggle: { keys: "mod+alt+5" } },
       }),
       NumberedListPlugin.configure({
-        node: { component: NumberedListElement },
+        node: { component: CustomOrderedList },
         shortcuts: { toggle: { keys: "mod+alt+6" } },
       }),
-      TaskListPlugin.configure({
-        node: { component: TaskListElement },
-        shortcuts: { toggle: { keys: "mod+alt+7" } },
-      }),
-      ListItemPlugin,
+      ListItemPlugin.configure({ node: { component: CustomListItem } }),
     ],
   });
 

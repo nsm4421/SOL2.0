@@ -4,13 +4,32 @@ import { Editor, EditorContainer } from "@/components/ui/editor";
 import { FixedToolbar } from "@/components/ui/fixed-toolbar";
 import { ListToolbarButton } from "@/components/ui/list-classic-toolbar-button";
 import { MarkToolbarButton } from "@/components/ui/mark-toolbar-button";
+import { useCustomMentions } from "@/hooks/use-custom-mention-state";
 import {
   BulletedListPlugin,
   NumberedListPlugin,
 } from "@platejs/list-classic/react";
 import { Bold, Italic, Strikethrough, Underline } from "lucide-react";
+import { PlateEditor } from "platejs/react";
+import { useCallback } from "react";
 
-export default function EditingArea() {
+interface Props {
+  editor: PlateEditor;
+}
+
+export default function EditingArea({ editor }: Props) {
+  const { mentions } = useCustomMentions();
+
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (!mentions && e.key === "@") {
+        e.preventDefault();
+        (editor as any).insertText?.("@");
+      }
+    },
+    [mentions, editor]
+  );
+
   return (
     <>
       <FixedToolbar className="justify-start rounded-t-lg flex">
@@ -29,17 +48,14 @@ export default function EditingArea() {
         >
           <Strikethrough />
         </MarkToolbarButton>
-        <MarkToolbarButton
-          nodeType="code"
-          tooltip="Code (⌘+E)"
-        >{`</>`}</MarkToolbarButton>
         <ListToolbarButton nodeType={BulletedListPlugin.key} />
         <ListToolbarButton nodeType={NumberedListPlugin.key} />
       </FixedToolbar>
-      <EditorContainer>
+      <EditorContainer className="!overflow-y-auto">
         <Editor
+          onKeyDown={onKeyDown}
           placeholder="해당 조항의 내용을 입력하세요"
-          className="bg-slate-50"
+          className="bg-slate-50 px-4 sm:px-6 lg:px-8 !pb-2"
         />
       </EditorContainer>
     </>

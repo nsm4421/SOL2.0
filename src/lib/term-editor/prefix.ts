@@ -56,14 +56,16 @@ interface Props {
 }
 export default function getPrefix({ depth, index }: Props) {
   switch (depth) {
+    case 0:
+      return;
     case 1:
       return `[${index}]`;
     case 2:
       return toCircled(index);
     case 3:
-      return toHangul(index);
+      return `${toHangul(index)}.`;
     default:
-      console.warn("index is not valie");
+      console.warn("index is not valid");
       return "????";
   }
 }

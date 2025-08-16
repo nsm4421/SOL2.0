@@ -1,9 +1,9 @@
-import { columns } from "./_components/columns";
-import { DataTable } from "./_components/data-table";
+import { columns } from "./_components/table/columns";
 import Header from "./_components/header";
 import { ReprCoverage } from "@/models/repr-coverage";
 import ReprCovRow from "./_lib/repr-cov-row";
-import Navbar from "./_components/navbar";
+import { DataTable } from "./_components/table/data-table";
+import AppNavbar from "@/components/navbar";
 
 export default async function DisplayReprCovefagePage() {
   const res = await fetch(
@@ -23,7 +23,7 @@ export default async function DisplayReprCovefagePage() {
 
   return (
     <>
-      <Navbar />
+      <AppNavbar label={"대표담보조회"} />
       <main className="p-3">
         <div className="mb-5 p-2">
           <Header />
